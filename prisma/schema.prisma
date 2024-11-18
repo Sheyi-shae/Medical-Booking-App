@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                        String    @id @default(auto()) @map("_id") @db.ObjectId
+  email                     String    @unique
+  password                  String
+  allergies                 String?
+  medicalHistory            String?
+  medications               String?
+  firstName                 String
+  lastName                  String
+  occupation                String?
+  number                    String
+  gender                    String?
+  dob                       String?
+  role                      String
+  isVerified                Boolean   @default(false)
+  adminVerified             Boolean   @default(false)
+  verificationCode          String?
+  verificationCodeExpiresAt DateTime?
+  createdAt                 DateTime  @default(now()) // Automatically set createdAt when a record is created
+  updatedAt                 DateTime  @updatedAt
+  specialization            String?
+  yearsOfExperience         String?
+  licenseNumber             String?
+  consultationFee           String?
+  imageUrl                  String?
+
+  //2-way relationship
+  patientAppointments Appointment[] @relation("PatientAppointments")
+  doctorAppointments  Appointment[] @relation("DoctorAppointments")
+}
+
+enum AppointmentStatus {
+  PENDING
+  SCHEDULED
+  COMPLETED
+  CANCELED
+}
+
+model Appointment {
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  reason          String
+  symptoms        String
+  doctorFullName  String
+  doctorEmail     String
+  patientFullName String
+  patientEmail    String
+  appointmentDate DateTime
+  appointmentTime String
+  status          AppointmentStatus @default(PENDING) // e.g., "scheduled", "completed", "canceled"
+
+  meetingLink     String? // Optional, for storing video call link
+  meetingId       String? @unique // Optional, for video call meeting ID
+  meetingPassword String? // Optional, for video call password
+
+  paymentStatus String? // Optional, e.g., "pending", "completed"
+  amount        Float? // Optional, for the cost of the appointment
+  createdAt     DateTime @default(now()) // Timestamp for creation
+  updatedAt     DateTime @updatedAt // Timestamp for last update
+
+  // Foreign keys
+  patientId String @db.ObjectId
+  doctorId  String @db.ObjectId
+  // Relations
+  patient   User?  @relation("PatientAppointments", fields: [patientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  doctor    User?  @relation("DoctorAppointments", fields: [doctorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
