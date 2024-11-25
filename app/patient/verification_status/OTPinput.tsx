@@ -34,7 +34,7 @@ const FormSchema = z.object({
 })
 
 interface ModalProps{
-  onclose: () => void
+  onclose?: () => void
 }
 
 export function VerificationOTPForm({onclose}:ModalProps) {
@@ -91,7 +91,7 @@ const email=session?.user.email ?? " "
     setLoading(false)
 
     if(verifyUser.status===200){
-      onclose();
+      onclose!();
       router.push('/patient')
     }
     } catch (error) {
