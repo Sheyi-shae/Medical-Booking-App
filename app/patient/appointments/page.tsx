@@ -1,12 +1,12 @@
 
-import { CustomButton } from "@/components/forms/TextInput"
+
 
 import { CreateAppointDialog } from "@/components/patientsComponents/CreateAppointmentDialog"
-import { getData } from "@/lib/getData"
+
 import fetchDoctors from "@/_ACTIONS/fetchDoctors"
 import fetchPatientAppointments from "@/_ACTIONS/fetchAppointments"
 import PatientCalendar from "@/components/patientsComponents/PatientCalendar"
-import AppointmentTabs from "@/components/doctorsComponent/AppointmentTabs"
+
 import PatientAppointmentTabs from "@/components/patientsComponents/PatientAppTabs"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"

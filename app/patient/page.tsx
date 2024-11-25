@@ -1,12 +1,10 @@
 import DashboardCard from '@/components/patientsComponents/DashboardCard'
-import { VerificationBox } from '@/components/patientsComponents/VerificationBox'
+
 
 import React from 'react'
 
 import PatientHeader from '@/components/patientsComponents/Header'
-import { UpcomingAppointmentTable } from '@/components/patientsComponents/upcoming_appointment/UpcomingAppointments'
-import { columns } from '@/components/patientsComponents/upcoming_appointment/column'
-import { Appointment } from '@/lib/types'
+
 import AvailableDoctors from '@/components/patientsComponents/AvailableDoctors'
 import fetchPatientAppointments from '@/_ACTIONS/fetchAppointments'
 import ScheduledAppointments from '@/components/patientsComponents/upcoming_appointment/Appointments'
