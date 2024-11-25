@@ -1,6 +1,6 @@
 
 import { CustomButton } from "@/components/forms/TextInput"
-import { DataTable } from "./data-table"
+
 import { CreateAppointDialog } from "@/components/patientsComponents/CreateAppointmentDialog"
 import { getData } from "@/lib/getData"
 import fetchDoctors from "@/_ACTIONS/fetchDoctors"
