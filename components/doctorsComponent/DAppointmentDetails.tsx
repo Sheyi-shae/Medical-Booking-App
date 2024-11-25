@@ -137,7 +137,9 @@ export default function DAppointmentDetails({id}:IdString) {
 
              <div className='w-full lg:w-1/2 '>
             <p className='text-sm pb-2 font-semibold text-slate-800 px-2'>Date:</p>
-            <p className='text-sm  text-slate-800 px-2'>{FormatDate(new Date(appDetails?.appointmentDate))}</p>
+            <p className='text-sm  text-slate-800 px-2'>
+            {FormatDate(new Date(appDetails?.appointmentDate ?? Date.now()))}
+            </p>
 
 
             </div>
