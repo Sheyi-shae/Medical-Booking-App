@@ -77,7 +77,7 @@ export default function AppointmentForm({doctors=[],onclose}:DoctorsFilter) {
       <form className= "space-y-6 " onSubmit={form.handleSubmit(onSubmit)}>
        
      
-       <div className="grid  grid-cols-2 space-x-3 space-y-2 ">
+       <div className="grid h-auto  grid-cols-2 space-x-3 space-y-2 ">
         <SelectFormWithValueId
         name="doctorId"
         label="Doctor/Specialist"
