@@ -8,7 +8,12 @@ import { CreateAppointment, UserDataProps } from "@/lib/types";
 import bcrypt from 'bcryptjs';
 import { redirect } from "next/navigation";
 
+import { authOptions } from "@/lib/authOps";
+
+import { getServerSession } from "next-auth";
+
 export default async function createAppointment(userData: CreateAppointment) {
+  const session = await getServerSession(authOptions)
   try {
     const {
         reason,
@@ -29,7 +34,11 @@ export default async function createAppointment(userData: CreateAppointment) {
     }
     const time= convertTo12Hour(appointmentTime)
     // next auth server to get this
-    const user ={id:'66dae557c368ca110e46a373',lastName:'Sarah' ,firstName:'Aduke',email:'seyi@gmail.com'}
+
+    const userId=session?.user.id ?? ''
+    const firstName=session?.user.firstName
+    const lastName=session?.user.lastName
+    const email=session?.user.email ?? 'adeniyi'
     const appointment = await prismaClient.appointment.create({
       data: {
 
@@ -40,15 +49,15 @@ export default async function createAppointment(userData: CreateAppointment) {
         appointmentTime:time,
         doctorEmail:findDocByEmail.email,
         doctorFullName:`${findDocByEmail?.firstName} ${findDocByEmail?.lastName}`,
-        patientFullName:`${user.firstName} ${user.lastName}`,
-        patientId:user.id,
-        patientEmail:user.email
+        patientFullName:`${firstName} ${lastName}`,
+        patientId:userId,
+        patientEmail:email
 
       },
     });
       const doctorEmail= findDocByEmail?.email;
       const doctorFullName=`${findDocByEmail?.firstName} ${findDocByEmail?.lastName}`
-      const patientFullName = `${user.firstName} ${user.lastName}`
+      const patientFullName = `${firstName} ${lastName}`
     // Send the verification email asynchronously
     await appointmentCreationEmail({ doctorEmail, patientFullName,doctorFullName,appointmentDate,time,reason });
 

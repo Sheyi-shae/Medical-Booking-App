@@ -129,7 +129,7 @@ export default function VideoRoom() {
 
 
         </div>
-        <div className='w-full md:w-[80%] max-h-[85vh]'>
+        <div className='w-full md:w-[80%] max-h-[60vh]'>
             {isAuthorized ? (
                 <VideoCall roomName={room}/>
 

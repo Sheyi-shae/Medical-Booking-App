@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import VideoRoom from '@/components/videocallComponent/VideoRoom'
+import  VideoRoom from '@/components/videocallComponent/VideoRoom'
 
 import React from 'react'
 

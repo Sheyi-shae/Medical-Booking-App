@@ -35,7 +35,7 @@ import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-// import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 // import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
 import { StaticTimePicker } from '@mui/x-date-pickers/StaticTimePicker';
 import { ThreeCircles } from 'react-loader-spinner'
@@ -305,8 +305,8 @@ export function TimeInput<T extends FieldValues>({ name, control, label }: TextI
             <FormItem>
               <FormLabel>{label}</FormLabel>
               <FormControl>
-                <StaticTimePicker
-                  displayStaticWrapperAs="mobile"
+                <MobileTimePicker
+                 
                   value={field.value ? dayjs(field.value) : null}
                   onChange={(newValue) => {
                     field.onChange(newValue ? newValue.format('HH:mm') : null);

@@ -12,6 +12,7 @@ export default async function fetchPatientAppointments(){
   if(session?.user.role==='patient'){
     try {
       const userId=session?.user.id
+      console.log(userId)
        const appointment=await prismaClient.appointment.findMany(
            {
              where: {
@@ -28,7 +29,7 @@ export default async function fetchPatientAppointments(){
      
       
          
-      
+      console.log(appointment)
        return appointment
    
      } catch (error) {
