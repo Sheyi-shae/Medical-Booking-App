@@ -305,6 +305,7 @@ export function TimeInput<T extends FieldValues>({ name, control, label }: TextI
             <FormItem>
               <FormLabel>{label}</FormLabel>
               <FormControl>
+                <FormMessage className="text-xs mt-2" />
                 <MobileTimePicker
                  
                   value={field.value ? dayjs(field.value) : null}
@@ -313,7 +314,7 @@ export function TimeInput<T extends FieldValues>({ name, control, label }: TextI
                   }}
                 />
               </FormControl>
-              <FormMessage className="text-xs mt-2" />
+              
             </FormItem>
           )}
         />

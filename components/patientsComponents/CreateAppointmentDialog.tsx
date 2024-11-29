@@ -30,14 +30,14 @@ export function CreateAppointDialog({doctors=[]}:DoctorsFilter) {
           
           <Modal show={openModal} size="lg" onClose={onCloseModal} popup>
         <Modal.Header />
-        <div className='p-2'>
+        <Modal.Body>
         <div className="text-blue-500 h-auto">Create an Appointment with a Specialist</div>
         {/* <Modal.Body> */}
         
           <AppointmentForm doctors={doctors} onclose={onCloseModal}/>
             
-            </div>
-        {/* </Modal.Body> */}
+            
+        </Modal.Body>
       </Modal>
     </>
   )
