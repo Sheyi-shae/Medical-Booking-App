@@ -45,7 +45,7 @@ export default function PatientAppointmentTabs() {
       }
   };
   fetchData();
-  }, [appointments])
+  }, [setAppointments])
   // console.log(appointments)
   const pending=appointments.filter(user=>user.status==='PENDING')
   const scheduled=appointments.filter(user=>user.status==='SCHEDULED')
