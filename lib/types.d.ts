@@ -94,7 +94,7 @@ declare interface Appointment  {
   doctorEmail?: string;
   patientEmail:string;
   patientFullName?: string;
-  
+  doctorImageUrl:string | null;
   appointmentDate: Date;
   appointmentTime?: string;
   status: string;

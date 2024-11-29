@@ -45,7 +45,7 @@ export default function PatientAppointmentTabs() {
       }
   };
   fetchData();
-  }, [])
+  }, [appointments])
   // console.log(appointments)
   const pending=appointments.filter(user=>user.status==='PENDING')
   const scheduled=appointments.filter(user=>user.status==='SCHEDULED')
@@ -110,7 +110,7 @@ export default function PatientAppointmentTabs() {
               </div>
             </div>
             <div className="flex justify-end">
-              <Link href={`/doctor/appointments/${appointment.id}`}><CustomButton type='button' title='details'/></Link>
+              <Link href={`/patient/appointments/${appointment.id}`}><CustomButton type='button' title='details'/></Link>
             </div>
           </div>
               ))}
@@ -166,7 +166,7 @@ export default function PatientAppointmentTabs() {
 
            
          <div className=' mr-8 ml-3 text-sm md:text-base flex flex-col gap-1 line-clamp-1 w-[50%]'>
-         <Link href={`/doctor/appointments/${appointment.id}`}> <div className='text-left capitalize text-cyan-700'>
+         <Link href={`/patient/appointments/${appointment.id}`}> <div className='text-left capitalize text-cyan-700'>
                {appointment.reason}
                </div></Link>
            <div className='text-center text-xs text-slate-600 flex gap-1 capitalize'><Users  size={18}/>

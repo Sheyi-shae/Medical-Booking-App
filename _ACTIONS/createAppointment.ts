@@ -51,7 +51,8 @@ export default async function createAppointment(userData: CreateAppointment) {
         doctorFullName:`${findDocByEmail?.firstName} ${findDocByEmail?.lastName}`,
         patientFullName:`${firstName} ${lastName}`,
         patientId:userId,
-        patientEmail:email
+        patientEmail:email,
+        doctorImageUrl:findDocByEmail.imageUrl
 
       },
     });

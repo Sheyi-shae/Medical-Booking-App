@@ -297,7 +297,7 @@ export function TimeInput<T extends FieldValues>({ name, control, label }: TextI
   return (
     <div>
       {/* TimePicker for selecting time */}
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      
         <FormField
           control={control}
           name={name}
@@ -317,7 +317,7 @@ export function TimeInput<T extends FieldValues>({ name, control, label }: TextI
             </FormItem>
           )}
         />
-      </LocalizationProvider> 
+     
     
       
    

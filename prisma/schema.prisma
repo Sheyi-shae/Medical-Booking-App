@@ -62,6 +62,7 @@ model Appointment {
   appointmentDate DateTime
   appointmentTime String
   status          AppointmentStatus @default(PENDING) // e.g., "scheduled", "completed", "canceled"
+  doctorImageUrl  String?
 
   meetingLink     String? // Optional, for storing video call link
   meetingId       String? @unique // Optional, for video call meeting ID
