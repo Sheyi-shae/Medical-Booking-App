@@ -298,26 +298,21 @@ export function TimeInput<T extends FieldValues>({ name, control, label }: TextI
     <div>
       {/* TimePicker for selecting time */}
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <FormField
-          control={control}
-          name={name}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{label}</FormLabel>
-              <FormControl>
-                <FormMessage className="text-xs mt-2" />
-                <DesktopTimePicker
-                 defaultValue={dayjs('2022-04-17T15:30')}
-                  value={dayjs(field.value)}
-                  // onChange={(newValue) => {
-                  //   field.onChange(newValue ? newValue.format('HH:mm') : null);
-                  // }}
-                />
-              </FormControl>
-              
-            </FormItem>
-          )}
-        />
+      <FormField
+  control={control}
+  name={name}
+  render={({ field }) => (
+    <div>
+      <FormLabel>{label}</FormLabel>
+      <DesktopTimePicker
+        defaultValue={dayjs('2022-04-17T15:30')}
+        value={field.value ? dayjs(field.value) : null}
+        onChange={(newValue) => field.onChange(newValue)}
+      />
+    </div>
+  )}
+/>
+          
       </LocalizationProvider> 
     
       
