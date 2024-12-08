@@ -11,6 +11,11 @@ import AppointmentForm from "./AppointmentForm"
 import { DoctorsFilter } from "@/lib/types";
 import { useSession } from "next-auth/react";
 
+//form
+
+
+
+
 
 export function CreateAppointDialog({doctors=[]}:DoctorsFilter) {
   const [openModal, setOpenModal] = useState(false);
@@ -20,6 +25,9 @@ export function CreateAppointDialog({doctors=[]}:DoctorsFilter) {
     setOpenModal(false);
 
   }
+  //form
+  
+
   return (
     <>
         <Button disabled={!isVerified}  onClick={() => setOpenModal(true)} className="text-white bg-gradient-to-r from-cyan-500
@@ -33,13 +41,11 @@ export function CreateAppointDialog({doctors=[]}:DoctorsFilter) {
       <Modal show={openModal} onClose={() => setOpenModal(false)}>
       <Modal.Header>Create an Appointment </Modal.Header>
       <Modal.Body>
-        <div className="space-y-6">
-        <AppointmentForm doctors={doctors} onclose={onCloseModal}/>
-        </div>
-      </Modal.Body>
-      <Modal.Footer>
         
-      </Modal.Footer>
+        <AppointmentForm doctors={doctors} onclose={onCloseModal}/>
+       
+      </Modal.Body>
+      
     </Modal>
     </>
   )
