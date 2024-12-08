@@ -43,7 +43,7 @@ export function CreateAppointDialog({doctors=[]}:DoctorsFilter) {
       <Modal.Body>
         
         <AppointmentForm doctors={doctors} onclose={onCloseModal}/>
-       
+        <h1>how are u</h1>
       </Modal.Body>
       
     </Modal>
