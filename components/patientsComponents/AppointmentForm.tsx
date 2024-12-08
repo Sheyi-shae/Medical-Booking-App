@@ -106,10 +106,10 @@ export default function AppointmentForm({doctors=[],onclose}:DoctorsFilter) {
          placeholder='describe symptoms or health concerns'/>
 
 
-    {/* <TimeInput 
+    <TimeInput 
     control={form.control} 
     name='appointmentTime' 
-    label='Appointment Time'  /> */}
+    label='Appointment Time'  />
 
 
 
