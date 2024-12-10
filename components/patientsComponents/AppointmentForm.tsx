@@ -28,9 +28,7 @@ const formSchema = z.object({
     
     doctorId: z.string(),
     appointmentDate: z.date(),
-    appointmentTime: z.enum(["9:00-10:00am", "10:00-11:00am", "11:00-12:00pm","01:00-2:00pm"], {
-      required_error: "Please pick appointment time",
-    }),
+    appointmentTime: z.string()
   })
 
   
@@ -52,6 +50,7 @@ export default function AppointmentForm({doctors=[],onclose}:DoctorsFilter) {
     // ✅ This will be type-safe and validated.
     try {
       setloading(true)
+      console.log(data)
       const appointment= await createAppointment(data)
       toast({
         title: `${appointment?.message}`,
