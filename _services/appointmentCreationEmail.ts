@@ -5,12 +5,12 @@ interface SendEmailProps {
   patientFullName: string;
   doctorFullName: string;
   appointmentDate:Date
-  time:string
+  appointmentTime:string
   reason:string
 }
 
 export const appointmentCreationEmail = async ({
-   doctorEmail, patientFullName,doctorFullName,reason,appointmentDate,time }: SendEmailProps) => {
+   doctorEmail, patientFullName,doctorFullName,reason,appointmentDate,appointmentTime }: SendEmailProps) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail', // or your email service provider
     auth: {
@@ -34,7 +34,7 @@ export const appointmentCreationEmail = async ({
             <p style="margin: 5px 0; line-height: 1.6;"><strong>Appointment Details:</strong></p>
             <p style="margin: 5px 0; line-height: 1.6;"><strong>Patient Name:</strong> ${patientFullName}</p>
             <p style="margin: 5px 0; line-height: 1.6;"><strong>Appointment Date:</strong> ${appointmentDate}</p>
-            <p style="margin: 5px 0; line-height: 1.6;"><strong>Appointment Time:</strong> ${time}</p>
+            <p style="margin: 5px 0; line-height: 1.6;"><strong>Appointment Time:</strong> ${appointmentTime}</p>
             <p style="margin: 5px 0; line-height: 1.6;"><strong>Reason for Visit:</strong> ${reason}</p>
 
             <b style="margin: 5px 0; line-height: 1.6;"> MeetingId and password will be sent to you after your approval </b><br/>

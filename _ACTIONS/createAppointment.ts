@@ -5,8 +5,6 @@ import { sendVerificationEmail } from "@/_services/sendEmail";
 import prismaClient from "@/lib/db";
 import { convertTo12Hour } from "@/lib/timeConverter";
 import { CreateAppointment, UserDataProps } from "@/lib/types";
-import bcrypt from 'bcryptjs';
-import { redirect } from "next/navigation";
 
 import { authOptions } from "@/lib/authOps";
 
@@ -32,8 +30,8 @@ export default async function createAppointment(userData: CreateAppointment) {
     if (!findDocByEmail) {
       return null
     }
-    const time= convertTo12Hour(appointmentTime)
-    // next auth server to get this
+    // const time= convertTo12Hour(appointmentTime)
+    // // next auth server to get this
 
     const userId=session?.user.id ?? ''
     const firstName=session?.user.firstName
@@ -46,7 +44,7 @@ export default async function createAppointment(userData: CreateAppointment) {
        symptoms,
         doctorId,
         appointmentDate,
-        appointmentTime:time,
+        appointmentTime,
         doctorEmail:findDocByEmail.email,
         doctorFullName:`${findDocByEmail?.firstName} ${findDocByEmail?.lastName}`,
         patientFullName:`${firstName} ${lastName}`,
@@ -60,7 +58,7 @@ export default async function createAppointment(userData: CreateAppointment) {
       const doctorFullName=`${findDocByEmail?.firstName} ${findDocByEmail?.lastName}`
       const patientFullName = `${firstName} ${lastName}`
     // Send the verification email asynchronously
-    await appointmentCreationEmail({ doctorEmail, patientFullName,doctorFullName,appointmentDate,time,reason });
+    await appointmentCreationEmail({ doctorEmail, patientFullName,doctorFullName,appointmentDate,appointmentTime,reason });
 
    
     return {
