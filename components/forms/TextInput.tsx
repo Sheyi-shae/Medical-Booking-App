@@ -3,7 +3,7 @@
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Control, Controller, FieldValues, Path } from "react-hook-form";
+import { Control,  FieldValues, Path } from "react-hook-form";
 import "react-time-picker-typescript/dist/style.css";
 
 import {
@@ -28,16 +28,8 @@ import { Options } from "@/lib/types";
 import { Textarea } from "../ui/textarea";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
-// import { useState } from "react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
-import dayjs from 'dayjs';
-// import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-// import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
-import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
-// import { StaticTimePicker } from '@mui/x-date-pickers/StaticTimePicker';
 import { ThreeCircles } from 'react-loader-spinner'
 
 interface TextInputProps<T extends FieldValues> {
@@ -293,31 +285,58 @@ export function PhoneNumberInput<T extends FieldValues>({ name, control, type, p
 };
 
 //time picker
-export function TimeInput<T extends FieldValues>({ name, control, label }: TextInputProps<T>) {
+export function TimeSelect<T extends FieldValues>({ name, control, label }: TextInputProps<T>) {
   return (
     <div>
-      {/* TimePicker for selecting time */}
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      
       <FormField
           control={control}
           name={name}
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="space-y-3">
               <FormLabel>{label}</FormLabel>
               <FormControl>
-                <DesktopTimePicker
-                  defaultValue={dayjs('2022-04-17T15:30')}
-                  value={field.value ? dayjs(field.value) : null}
-                  onChange={(newValue) => field.onChange(newValue ? newValue.toISOString() : null)}
-                />
-                <FormMessage className="text-xs mt-2" />
-              </FormControl>
-            </FormItem>
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className="flex flex-col space-y-1"
+                >
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="9:00-10:00am" />
+                    </FormControl>
+                    <FormLabel className="font-normal">
+                  9:00-10:00am
+                    </FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="10:00-11:00am" />
+                    </FormControl>
+                    <FormLabel className="font-normal">
+                    10:00-11:00am
+                    </FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="11:00-12:00pm" />
+                    </FormControl>
+                    <FormLabel className="font-normal">11:00-12:00pm</FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="01:00-02:00pm" />
+                    </FormControl>
+                    <FormLabel className="font-normal">01:00-02:00pm</FormLabel>
+                  </FormItem>
+            
+            
+        </RadioGroup>
+      </FormControl>
+      <FormMessage />
+    </FormItem>
           )}
         />
-          
-      </LocalizationProvider> 
-    
       
    
     </div>

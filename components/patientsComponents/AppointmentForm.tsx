@@ -8,13 +8,12 @@ import {
    
   } from "@/components/ui/form"
 
-import TextInput, { CustomButton,  LoadingButton,  SelectFormWithValueId,  TextAreaInputNoKeyDown,  TimeInput } from "@/components/forms/TextInput"
+import  { CustomButton,  LoadingButton,  SelectFormWithValueId,  TextAreaInputNoKeyDown, TimeSelect,   } from "@/components/forms/TextInput"
 
 import { DateOfBirth } from '../forms/TextInput'
 import { DoctorsFilter } from '@/lib/types'
 import createAppointment from '@/_ACTIONS/createAppointment'
 import { useToast } from '../ui/use-toast'
-
 
 
 
@@ -29,7 +28,9 @@ const formSchema = z.object({
     
     doctorId: z.string(),
     appointmentDate: z.date(),
-    appointmentTime:z.string()
+    appointmentTime: z.enum(["9:00-10:00am", "10:00-11:00am", "11:00-12:00pm","01:00-2:00pm"], {
+      required_error: "Please pick appointment time",
+    }),
   })
 
   
@@ -106,10 +107,12 @@ export default function AppointmentForm({doctors=[],onclose}:DoctorsFilter) {
          placeholder='describe symptoms or health concerns'/>
 
 
-    <TimeInput 
+    <TimeSelect
     control={form.control} 
     name='appointmentTime' 
-    label='Appointment Time'  />
+    label='Appointment Time'
+  
+      />
 
 
 
