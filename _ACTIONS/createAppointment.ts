@@ -3,11 +3,8 @@
 import { appointmentCreationEmail } from "@/_services/appointmentCreationEmail";
 import { sendVerificationEmail } from "@/_services/sendEmail";
 import prismaClient from "@/lib/db";
-import { convertTo12Hour } from "@/lib/timeConverter";
 import { CreateAppointment, UserDataProps } from "@/lib/types";
-
 import { authOptions } from "@/lib/authOps";
-
 import { getServerSession } from "next-auth";
 
 export default async function createAppointment(userData: CreateAppointment) {
@@ -22,7 +19,7 @@ export default async function createAppointment(userData: CreateAppointment) {
         appointmentTime
     } = userData;
 
-    
+    console.log(userData)
     const findDocByEmail = await prismaClient.user.findUnique({
       where: { id:doctorId},
     });
@@ -30,13 +27,12 @@ export default async function createAppointment(userData: CreateAppointment) {
     if (!findDocByEmail) {
       return null
     }
-    // const time= convertTo12Hour(appointmentTime)
-    // // next auth server to get this
+   
 
     const userId=session?.user.id ?? ''
     const firstName=session?.user.firstName
     const lastName=session?.user.lastName
-    const email=session?.user.email ?? 'adeniyi'
+    const email=session?.user.email ?? ''
     const appointment = await prismaClient.appointment.create({
       data: {
 
