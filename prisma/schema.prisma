@@ -65,7 +65,7 @@ model Appointment {
   doctorImageUrl  String?
 
   meetingLink     String? // Optional, for storing video call link
-  meetingId       String? @unique // Optional, for video call meeting ID
+  meetingId       String?// Optional, for video call meeting ID
   meetingPassword String? // Optional, for video call password
 
   paymentStatus String? // Optional, e.g., "pending", "completed"

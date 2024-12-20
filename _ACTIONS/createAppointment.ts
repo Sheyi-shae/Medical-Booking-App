@@ -25,10 +25,13 @@ export default async function createAppointment(userData: CreateAppointment) {
     });
 
     if (!findDocByEmail) {
-      return null
+      return {
+        message: 'Doctor not found',
+        status: 404,
+      };
     }
    
-
+    console.log('Doctor:', findDocByEmail);
     const userId=session?.user.id ?? ''
     const firstName=session?.user.firstName
     const lastName=session?.user.lastName
@@ -65,7 +68,7 @@ export default async function createAppointment(userData: CreateAppointment) {
     };
 
   } catch (error) {
-    console.log(error);
+    console.error('Error creating appointment:', error);
     return {
       message: 'Internal Server Error',
       subMessage: 'Please try again later',
